@@ -3,7 +3,7 @@ from  django.core.validators import MinLengthValidator, MaxLengthValidator
 
 # Create your models here.
 
-class Citizens(models.Model):
+class Citizen(models.Model):
     nin = models.CharField(max_length=11, unique=True, validators = [MinLengthValidator(11, message='Your NIN should be 11 digit numbers') ,MaxLengthValidator(11)] )
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
@@ -16,6 +16,6 @@ class Citizens(models.Model):
 
     
     
-    # def __str__(self) -> str:
-    #     return self.first_name, self.last_name
+    def __str__(self) -> str:
+        return f"{self.first_name} {self.last_name}"
     

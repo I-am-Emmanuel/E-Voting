@@ -5,7 +5,7 @@ from . models import UserModel
 # Register your models here.
 
 admin.site.register(UserModel)
-admin.site.register(UserModel)
+# admin.site.register(UserModel)
 # @admin.register(UserModel)
 # class AdminUserModel(UserAdmin)
     # list_display = ['password']

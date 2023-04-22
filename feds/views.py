@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework import status
 from . serializers import CitizenSerializer
-from . models import Citizens
+from . models import Citizen
 
 
 

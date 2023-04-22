@@ -6,7 +6,7 @@ from .sender import send_otp_to_phone
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
-        fields = ['phone', 'password', 'is_verified']
+        fields = ['phone', 'password']
                 
         extra_kwargs = {
             'password': {'write_only': True}
@@ -17,19 +17,17 @@ class UserSerializer(serializers.ModelSerializer):
         password = validated_data.pop('password', None)
         instance = self.Meta.model(**validated_data)
         instance.phone = instance.phone
-        instance.otp = send_otp_to_phone(phone=instance.phone)
+        # instance.otp = send_otp_to_phone(phone=instance.phone)
         if password is not None:
             instance.set_password(password)
         instance.save()
         return instance
 
-class VerifyOTPSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserModel
-        fields = ['phone', 'otp']
-
+# class VerifyOTPSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = UserModel
+#         fields = ['phone', 'otp']
         
-
 
     
 class UserLoginSerializer(serializers.ModelSerializer):

@@ -22,11 +22,12 @@ admin.site.site_header = 'INEC Admin'
 admin.site.index_title= 'All Tables'
 
 urlpatterns = [
+    path('', include('core.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
     path('admin/', admin.site.urls),
     path('feds/', include('feds.urls')),
     path('api/auth/', include('core.urls')),
-    path('core_2/', include('core_2.urls')),
+    path('polling/', include('polling.urls')),
     
 ]
 

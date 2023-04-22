@@ -8,7 +8,7 @@ from . manager import UserModelManager
 class UserModel(AbstractUser):
     # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     phone = models.CharField(max_length=14, unique=True, blank=False)
-    is_phone_verified = models.BooleanField(default=False)
+    # is_phone_verified = models.BooleanField(default=False)
     otp = models.CharField(max_length=6, null=True)
     username=None
     email = None
@@ -23,16 +23,5 @@ class UserModel(AbstractUser):
 
 
 
-    # password = models.CharField(max_length=250)
-    # otp_enabled = models.BooleanField(default=False)
-    # otp_verified = models.BooleanField(default=False)
-    # otp_base32 = models.CharField(max_length=255, null=True)
-    # otp_auth_url = models.CharField(max_length=255, null=True)
-    # username = models.CharField(max_length=32, unique=True)
     
-    # email = None
-
-
-    # USERNAME_FIELD = 'phone'
-    # EMAIL_FIELD = 'phone'
     

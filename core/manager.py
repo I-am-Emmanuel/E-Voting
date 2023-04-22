@@ -1,5 +1,5 @@
 from django.contrib.auth.base_user import BaseUserManager
-from feds.models import Citizens
+# from feds.models import Citizens
 
 class UserModelManager(BaseUserManager):
     use_in_migrations = True

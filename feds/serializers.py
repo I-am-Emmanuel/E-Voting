@@ -1,9 +1,9 @@
-from . models import Citizens
+from . models import Citizen
 from rest_framework import serializers
 
 class CitizenSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Citizens
+        model = Citizen
         fields = ['nin', 'first_name', 'last_name', 'birth_date', 'phone', 'email', 'profile_pics']
         ordering = ['first_name']
     # citizen_contact_detail = serializers.SerializerMethodField(method_name='field_id')

@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import status, generics
-from rest_framework import status, generics
 from django.db.models import Q, Value, F
 # from rest_framework.views 
 from rest_framework.mixins import CreateModelMixin
@@ -11,7 +10,7 @@ from core.serializer import UserSerializer, UserLoginSerializer
 # from core.serializer import UserSerializer, VerifyOTPSerializer, UserLoginSerializer
 from core.models import UserModel
 from .sender import send_otp_to_phone
-import pyotp
+# import pyotp
 from feds.models import Citizen
 from electronic_voting import settings
 from rest_framework.decorators import api_view
@@ -48,7 +47,8 @@ class LoginView(generics.GenericAPIView):
     def post(self, request):
         data = request.data
         phone = data.get('phone')
-        password= data.get('password')      
+        password= data.get('password') 
+        
         
 
         user = authenticate(phone=phone, password=password)

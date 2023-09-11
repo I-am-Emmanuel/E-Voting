@@ -45,10 +45,10 @@ ALLOWED_HOSTS = []
 
 # ALLOWED_HOSTS = []
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000"
-]
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000"
+# ]
+# CORS_ALLOW_CREDENTIALS = True
 
 
 
@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
+    # 'corsheaders',
     'debug_toolbar',
     'rest_framework',
     'feds',
@@ -106,15 +106,7 @@ WSGI_APPLICATION = 'electronic_voting.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'electronic_voting',
-#         'HOST': 'localhost',
-#         'USER': 'root',
-#         'PASSWORD': '@kinsol@66990242'
-#     }
-# }
+
 
 # DATABASES = {
 #     'default': {

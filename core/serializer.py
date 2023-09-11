@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
        
 
     def create(self, validated_data):
-        password = validated_data.pop('password', None)
+        password = validated_data.pop('password')
         instance = self.Meta.model(**validated_data)
         instance.phone = instance.phone
         # instance.otp = send_otp_to_phone(phone=instance.phone)

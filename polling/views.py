@@ -56,6 +56,17 @@ class VerificationViewSet(CreateModelMixin, GenericViewSet):
     def create(self, request):    
         
         data = request.data
+
+        # if UserModel.objects.filter(Q(nin=data.get('nin')) & Q(birth_date=birth_date))
+
+
+        # queryset = Citizen.objects.filter(nin=data.get('nin')).all()
+        # for citizen in queryset:
+        #     print(citizen.phone)
+
+
+        # print(queryset)
+
         try:
             birth_date = data.get('birth_date')
 
@@ -67,14 +78,19 @@ class VerificationViewSet(CreateModelMixin, GenericViewSet):
 
         
         if Citizen.objects.filter(Q(nin=data.get('nin')) & Q(birth_date=birth_date)) and age >= 18:
-            serializer = VerificationSerializer(data=request.data)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            return Response({'Success': 'You have successfully done your accreditation. You are now eligible to vote'}, status=status.HTTP_201_CREATED)
+            queryset = Citizen.objects.filter(nin=data.get('nin'))
+            citizen = queryset[0]
+            if UserModel.objects.filter(phone=citizen.phone):
+                serializer = VerificationSerializer(data=request.data)
+                serializer.is_valid(raise_exception=True)
+                serializer.save()
+                return Response({'Success': 'You are successfully done with your accreditation. You are now eligible to vote'}, status=status.HTTP_201_CREATED)
+            else:
+                return Response({'Fail': 'You have to registered before using this platform for analysis purposes.'})
         elif Citizen.objects.filter(Q(nin=data.get('nin')) & Q(birth_date=birth_date)) and age < 18:
             return Response({'Fail': 'We have your data in place but your age is not eligible to vote!!'}, status=status.HTTP_401_UNAUTHORIZED)
         else:
-            return Response({'Fail': "Your registration cannot be found in the database. Make sure you have registered and your data is input correctly!!"}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'Fail': "Your NIN cannot be found in the database. Make sure you have registered and your datas are input correctly!!"}, status=status.HTTP_401_UNAUTHORIZED)
     
         
 
@@ -91,6 +107,7 @@ class ElectionViewSet(CreateModelMixin, GenericViewSet):
     def create(self, request):
         data = request.data
         # nin = data.get('nin')
+
     
         if Verification.objects.filter(nin=data.get('voters_nin')):
             serializer = ElectionSerializer(data=request.data)
